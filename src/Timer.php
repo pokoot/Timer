@@ -59,14 +59,16 @@ class Timer
             switch (strtoupper($format)) {
                 case "MILLISECOND":
                     $result = $diff * 1000;
+                    $suffix = "ms";
                     break;
                 case "SECOND":
                 default:
                     $result = $diff;
+                    $suffic = "s";
                     break;
             }
 
-            return number_format($result, $decimals);
+            return number_format($result, $decimals) . $suffix;
         }
 
         return 0;
