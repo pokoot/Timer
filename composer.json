@@ -1,0 +1,17 @@
+{
+    "name": "goldfinger/console",
+    "description": "Measures some time on a script and shows on how long it has been taken to be interpreted.",
+    "authors": [
+        {
+            "name": "Harold Kim",
+            "email": "pokoot@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.3.0"
+    },
+    "autoload": {
+        "classmap": ["src/"]
+    }
+}
