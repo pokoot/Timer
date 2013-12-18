@@ -21,19 +21,6 @@ class Timer
     private $time;
 
     /**
-     * Return the current microtime.
-     *
-     * @access public
-     * @return float
-     */
-    public function getCurrentTime()
-    {
-        list($usec, $sec) = explode(" ", microtime());
-
-        return ((float) $usec + (float) $sec);
-    }
-
-    /**
      * Starts the timer.
      *
      * @access public
@@ -41,7 +28,7 @@ class Timer
      */
     public function start()
     {
-        return $this->time = $this->getCurrentTime();
+        return $this->time = microtime(true);
     }
 
     /**
@@ -56,21 +43,32 @@ class Timer
     }
 
     /**
-     * Returns the elapsed time
+     * Return the elampsed time in specific format.
      *
      * @access public
-     * @param  int   $decimal
-     * @return float
+     * @param  int    $decimals
+     * @param  string $format
+     * @return void
      */
-    public function getTime($decimal = 4)
+    public function getTime($decimals = 2, $format = 'MILLISECOND')
     {
         if ($this->time > 0) {
+            $endTime = microtime(true);
+            $diff = ($endTime - $this->time);
 
-            $endTime = $this->getCurrentTime();
+            switch (strtoupper($format)) {
+                case "MILLISECOND":
+                    $result = $diff * 1000;
+                    break;
+                case "SECOND":
+                default:
+                    $result = $diff;
+                    break;
+            }
 
-            return number_format(bcsub($endTime, $this->time, 4), $decimal);
+            return number_format($result, $decimals);
         }
 
-        return number_format(0, $decimal);
+        return 0;
     }
 }

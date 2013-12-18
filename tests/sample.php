@@ -8,12 +8,13 @@ $t = new Timer();
 
 $t->start();
 
-sleep(2);
+usleep(100);
 
 print "<Br/> getTime = " . $t->getTime();
 
-sleep(2);
+usleep(500);
 
 print "<Br/> getTime = " . $t->getTime();
 
 $t->stop();
+
